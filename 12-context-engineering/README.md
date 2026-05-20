@@ -1,4 +1,4 @@
-# Context Engineering for AI Agents
+﻿# Context Engineering for AI Agents
 
 [![Context Engineering](./images/lesson-12-thumbnail.png)](https://youtu.be/F5zqRV7gEag)
 

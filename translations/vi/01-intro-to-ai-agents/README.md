@@ -1,4 +1,4 @@
-[![Intro to AI Agents](../../../translated_images/vi/lesson-1-thumbnail.d21b2c34b32d35bb.webp)](https://youtu.be/3zgm60bXmQk?si=QA4CW2-cmul5kk3D)
+﻿[![Intro to AI Agents](../../../translated_images/vi/lesson-1-thumbnail.d21b2c34b32d35bb.webp)](https://youtu.be/3zgm60bXmQk?si=QA4CW2-cmul5kk3D)
 
 > _(Nhấp vào hình ảnh trên để xem video cho bài học này)_
 
@@ -114,15 +114,6 @@ Framework Agentic cung cấp cho nhà phát triển các mẫu sẵn, công cụ
 - Hợp tác giữa nhiều agent
 
 Trong khóa học này, chúng ta tập trung vào **Microsoft Agent Framework (MAF)** để xây dựng các agent sẵn sàng dùng trong sản xuất.
-
----
-
-## Mẫu mã
-
-Sẵn sàng xem nó hoạt động chưa? Dưới đây là các mẫu mã cho bài học này:
-
-- 🐍 Python: [Agent Framework](./code_samples/01-python-agent-framework.ipynb)
-- 🔷 .NET: [Agent Framework](./code_samples/01-dotnet-agent-framework.md)
 
 ---
 

@@ -1,4 +1,4 @@
-# Kỹ thuật ngữ cảnh cho Tác nhân AI
+﻿# Kỹ thuật ngữ cảnh cho Tác nhân AI
 
 [![Kỹ thuật ngữ cảnh](../../../translated_images/vi/lesson-12-thumbnail.ed19c94463e774d4.webp)](https://youtu.be/F5zqRV7gEag)
 

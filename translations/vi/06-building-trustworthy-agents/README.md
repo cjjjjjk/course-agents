@@ -1,4 +1,4 @@
-[![Agent AI Đáng Tin Cậy](../../../translated_images/vi/lesson-6-thumbnail.a58ab36c099038d4.webp)](https://youtu.be/iZKkMEGBCUQ?si=Q-kEbcyHUMPoHp8L)
+﻿[![Agent AI Đáng Tin Cậy](../../../translated_images/vi/lesson-6-thumbnail.a58ab36c099038d4.webp)](https://youtu.be/iZKkMEGBCUQ?si=Q-kEbcyHUMPoHp8L)
 
 > _(Nhấn vào hình ảnh phía trên để xem video của bài học này)_
 

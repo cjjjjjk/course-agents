@@ -1,4 +1,4 @@
-[![Planning Design Pattern](../../../translated_images/vi/lesson-7-thumbnail.f7163ac557bea123.webp)](https://youtu.be/kPfJ2BrBCMY?si=9pYpPXp0sSbK91Dr)
+﻿[![Planning Design Pattern](../../../translated_images/vi/lesson-7-thumbnail.f7163ac557bea123.webp)](https://youtu.be/kPfJ2BrBCMY?si=9pYpPXp0sSbK91Dr)
 
 > _(Nhấp vào hình trên để xem video bài học này)_
 
@@ -212,7 +212,6 @@ Phần tiếp theo là đầu ra từ đoạn mã trước đó và bạn có th
 }
 ```
 
-Một notebook ví dụ với đoạn mã trên có sẵn [tại đây](07-python-agent-framework.ipynb).
 
 ### Lập kế hoạch Lặp lại
 

@@ -1,4 +1,4 @@
-[![Multi-Agent Design](../../../translated_images/vi/lesson-9-thumbnail.38059e8af1a5b71d.webp)](https://youtu.be/His9R6gw6Ec?si=3_RMb8VprNvdLRhX)
+﻿[![Multi-Agent Design](../../../translated_images/vi/lesson-9-thumbnail.38059e8af1a5b71d.webp)](https://youtu.be/His9R6gw6Ec?si=3_RMb8VprNvdLRhX)
 
 > _(Nhấp vào hình ảnh trên để xem video bài học này)_
 # Siêu nhận thức trong các tác nhân AI

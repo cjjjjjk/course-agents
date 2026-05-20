@@ -1,6 +1,6 @@
-# Building Computer Use Agents (CUA)
+﻿# Building Computer Use Agents (CUA)
 
-Computer use agents can interact with websites the same way a person would: by opening a browser, inspecting the page, and taking the next best action from what they see. In this lesson, you'll build a browser automation agent that searches Airbnb, extracts structured listing data, and identifies the cheapest stay in Stockholm.
+Computer use agents can interact with websites the same way a person would: by opening a browser, inspecting the page, and taking the next best action from what they see. In this lesson, you will study the architecture of a browser automation agent that searches a travel site, extracts structured listing data, and identifies the cheapest stay.
 
 The lesson combines Browser-Use for AI-driven navigation, Playwright and Chrome DevTools Protocol (CDP) for browser control, Azure OpenAI for vision-enabled reasoning, and Pydantic for structured extraction.
 
@@ -22,47 +22,14 @@ After completing this lesson, you will know how to:
 - Extract typed results from visible page content and turn them into downstream business logic
 - Choose between agent and actor patterns based on how predictable the browser task is
 
-## Code Sample
-
-This lesson includes one notebook tutorial:
-
-- [15-browser-user.ipynb](./15-browser-user.ipynb): Launches a Chrome session over CDP, searches Airbnb for Stockholm listings, extracts prices with Browser-Use vision, and returns the cheapest option as structured data.
-
-## Prerequisites
-
-- Python 3.12+
-- Azure OpenAI deployment configured in your environment
-- Chrome or Chromium installed locally
-- Playwright dependencies installed
-- Basic familiarity with async Python
-
-## Setup
-
-Install the packages used in the notebook:
-
-```bash
-pip install browser_use playwright python-dotenv
-playwright install chromium
-```
-
-Set the Azure OpenAI environment variables used by the notebook:
-
-```bash
-AZURE_OPENAI_ENDPOINT=...
-AZURE_OPENAI_API_KEY=...
-AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=...
-# Optional: defaults to the latest API version when omitted
-AZURE_OPENAI_API_VERSION=...
-```
-
 ## Architecture Overview
 
-The notebook demonstrates a hybrid browser automation workflow:
+The pattern uses a hybrid browser automation workflow:
 
 1. Chrome starts with CDP enabled so both Playwright and Browser-Use can share the same browser session.
 2. A Browser-Use agent handles open-ended navigation tasks such as opening Airbnb, dismissing pop-ups, and searching for Stockholm.
 3. The active page is inspected with a structured Pydantic schema to extract listing titles, nightly prices, ratings, and URLs.
-4. Python logic compares the extracted listings and highlights the cheapest result.
+4. Deterministic business logic compares the extracted listings and highlights the cheapest result.
 
 This approach keeps the flexible, vision-based reasoning that Browser-Use is good at while still giving you deterministic browser control when you need it.
 

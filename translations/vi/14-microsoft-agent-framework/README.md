@@ -1,4 +1,4 @@
-# Khám Phá Microsoft Agent Framework
+﻿# Khám Phá Microsoft Agent Framework
 
 ![Agent Framework](../../../translated_images/vi/lesson-14-thumbnail.90df0065b9d234ee.webp)
 
@@ -17,10 +17,6 @@ Sau khi hoàn thành bài học này, bạn sẽ biết cách:
 - Xây dựng các Agent AI sẵn sàng triển khai bằng Microsoft Agent Framework
 - Áp dụng các tính năng cốt lõi của Microsoft Agent Framework vào các trường hợp sử dụng Agentic của bạn
 - Sử dụng các mẫu nâng cao bao gồm quy trình làm việc, middleware, và khả năng quan sát
-
-## Mẫu mã nguồn
-
-Mẫu mã nguồn cho [Microsoft Agent Framework (MAF)](https://aka.ms/ai-agents-beginners/agent-framewrok) có thể được tìm thấy trong kho lưu trữ này dưới các tệp `xx-python-agent-framework` và `xx-dotnet-agent-framework`.
 
 ## Hiểu về Microsoft Agent Framework
 
@@ -343,10 +339,6 @@ Phần trên đã bao gồm các khái niệm chính của Microsoft Agent Frame
 - **Kiểm điểm quy trình làm việc**: Sử dụng sự kiện quy trình làm việc và tuần tự hóa để lưu và tiếp tục các quy trình agent chạy lâu dài.
 - **Lựa chọn công cụ động**: Kết hợp RAG theo mô tả công cụ với đăng ký công cụ của MAF để chỉ trình bày các công cụ phù hợp cho mỗi truy vấn.
 - **Chuyển giao đa agent**: Sử dụng các edges trong quy trình làm việc và định tuyến có điều kiện để điều phối chuyển giao giữa các agent chuyên biệt.
-
-## Mẫu mã nguồn
-
-Mẫu mã nguồn cho Microsoft Agent Framework có thể được tìm thấy trong kho lưu trữ này dưới các tệp `xx-python-agent-framework` và `xx-dotnet-agent-framework`.
 
 ## Có thêm câu hỏi về Microsoft Agent Framework?
 

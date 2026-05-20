@@ -1,4 +1,4 @@
-# Using Agentic Protocols (MCP, A2A and NLWeb)
+﻿# Using Agentic Protocols (MCP, A2A and NLWeb)
 
 [![Agentic Protocols](./images/lesson-11-thumbnail.png)](https://youtu.be/X-Dh9R3Opn8)
 

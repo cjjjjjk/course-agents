@@ -1,4 +1,4 @@
-[![Khám phá các khung tác nhân AI](../../../translated_images/vi/lesson-2-thumbnail.c65f44c93b8558df.webp)](https://youtu.be/ODwF-EZo_O8?si=1xoy_B9RNQfrYdF7)
+﻿[![Khám phá các khung tác nhân AI](../../../translated_images/vi/lesson-2-thumbnail.c65f44c93b8558df.webp)](https://youtu.be/ODwF-EZo_O8?si=1xoy_B9RNQfrYdF7)
 
 > _(Nhấp vào hình ảnh ở trên để xem video của bài học này)_
 
@@ -373,8 +373,6 @@ Microsoft Agent Framework cũng tích hợp với các dịch vụ Azure thông 
 
 ## Mã mẫu
 
-- Python: [Khung tác nhân](./code_samples/02-python-agent-framework.ipynb)
-- .NET: [Khung tác nhân](./code_samples/02-dotnet-agent-framework.md)
 
 ## Còn thắc mắc về Khung tác nhân AI?
 

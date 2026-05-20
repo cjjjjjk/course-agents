@@ -1,4 +1,4 @@
-# Exploring Microsoft Agent Framework
+﻿# Exploring Microsoft Agent Framework
 
 ![Agent Framework](./images/lesson-14-thumbnail.png)
 
@@ -17,10 +17,6 @@ After completing this lesson, you will know how to:
 - Build Production Ready AI Agents using Microsoft Agent Framework
 - Apply the core features of Microsoft Agent Framework to your Agentic Use Cases
 - Use advanced patterns including workflows, middleware, and observability
-
-## Code Samples 
-
-Code samples for [Microsoft Agent Framework (MAF)](https://aka.ms/ai-agents-beginners/agent-framewrok) can be found in this repository under `xx-python-agent-framework` and `xx-dotnet-agent-framework` files.
 
 ## Understanding Microsoft Agent Framework
 
@@ -343,10 +339,6 @@ The sections above cover the key concepts of Microsoft Agent Framework. As you b
 - **Workflow Checkpointing**: Use workflow events and serialization to save and resume long-running agent processes.
 - **Dynamic Tool Selection**: Combine RAG over tool descriptions with MAF's tool registration to present only relevant tools per query.
 - **Multi-Agent Handoff**: Use workflow edges and conditional routing to orchestrate handoffs between specialized agents.
-
-## Code Samples 
-
-Code samples for Microsoft Agent Framework can be found in this repository under `xx-python-agent-framework` and `xx-dotnet-agent-framework` files.
 
 ## Got More Questions About Microsoft Agent Framework?
 

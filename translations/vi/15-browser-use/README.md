@@ -1,111 +1,52 @@
-# Xây dựng Đại lý Sử dụng Máy tính (CUA)
+﻿# Xây dựng Computer Use Agents (CUA)
 
-Các đại lý sử dụng máy tính có thể tương tác với các trang web giống như một người dùng: bằng cách mở trình duyệt, kiểm tra trang và thực hiện hành động tốt nhất tiếp theo dựa trên những gì họ thấy. Trong bài học này, bạn sẽ xây dựng một đại lý tự động trình duyệt tìm kiếm Airbnb, trích xuất dữ liệu danh sách có cấu trúc và xác định chỗ ở rẻ nhất ở Stockholm.
+Computer use agents có thể tương tác với website giống như con người: mở trình duyệt, quan sát trang và chọn hành động tiếp theo dựa trên những gì hiển thị. Bài học này tập trung vào kiến trúc của một agent tự động hóa trình duyệt dùng để tìm kiếm thông tin, trích xuất dữ liệu có cấu trúc và đưa ra quyết định nghiệp vụ.
 
-Bài học kết hợp Browser-Use để điều hướng dựa trên AI, Playwright và Chrome DevTools Protocol (CDP) để điều khiển trình duyệt, Azure OpenAI cho khả năng suy luận dựa trên thị giác, và Pydantic để trích xuất có cấu trúc.
+Mẫu kiến trúc kết hợp Browser-Use cho điều hướng linh hoạt, Playwright và Chrome DevTools Protocol cho điều khiển trình duyệt, mô hình thị giác cho suy luận trên giao diện, và schema có cấu trúc để chuẩn hóa dữ liệu trích xuất.
 
 ## Giới thiệu
 
-Bài học này sẽ bao gồm:
+Bài học này bao gồm:
 
-- Hiểu khi nào đại lý sử dụng máy tính phù hợp hơn tự động hóa chỉ bằng API
-- Kết hợp Browser-Use với Playwright và CDP để quản lý vòng đời trình duyệt đáng tin cậy
-- Sử dụng Azure OpenAI có khả năng thị giác và đầu ra Pydantic có cấu trúc để trích xuất dữ liệu danh sách từ các trang web động
-- Quyết định khi nào nên dùng quy trình tự động trình duyệt ưu tiên đại lý, ưu tiên tác nhân, hoặc kết hợp
+- Khi nào computer use agent phù hợp hơn tự động hóa chỉ dựa trên API.
+- Cách kết hợp agent điều hướng với điều khiển trình duyệt tất định.
+- Cách dùng mô hình thị giác và output có cấu trúc để trích xuất dữ liệu từ trang web động.
+- Cách chọn giữa agent-first, actor-first và workflow hybrid.
 
 ## Mục tiêu học tập
 
-Sau khi hoàn thành bài học, bạn sẽ biết cách:
+Sau bài học này, bạn sẽ biết:
 
-- Cấu hình Browser-Use với Azure OpenAI và Playwright
-- Xây dựng quy trình tự động trình duyệt điều hướng trang web thực và xử lý các phần tử UI động
-- Trích xuất kết quả được gõ kiểu từ nội dung trang hiển thị và chuyển thành logic nghiệp vụ tiếp theo
-- Lựa chọn giữa mẫu đại lý hoặc tác nhân dựa trên độ dự đoán của nhiệm vụ trình duyệt
+- Nhận diện nhiệm vụ trình duyệt phù hợp với computer use agent.
+- Thiết kế workflow điều hướng trang web có thể xử lý UI động.
+- Chuyển nội dung nhìn thấy trên trang thành dữ liệu có cấu trúc.
+- Cân bằng giữa tính linh hoạt của agent và tính chính xác của actor.
 
-## Mẫu mã
+## Tổng quan kiến trúc
 
-Bài học này bao gồm một hướng dẫn trong notebook:
+Mẫu này dùng workflow tự động hóa trình duyệt dạng hybrid:
 
-- [15-browser-user.ipynb](./15-browser-user.ipynb): Khởi chạy phiên Chrome qua CDP, tìm kiếm danh sách Stockholm trên Airbnb, trích xuất giá với Browser-Use vision, và trả về lựa chọn rẻ nhất dưới dạng dữ liệu có cấu trúc.
+1. Trình duyệt được mở với khả năng điều khiển từ bên ngoài để agent và actor có thể dùng chung phiên làm việc.
+2. Agent xử lý các tác vụ mở như tìm kiếm, đóng popup, đọc trạng thái UI và chọn bước tiếp theo.
+3. Khi cấu trúc trang đã ổn định, actor hoặc logic tất định trích xuất các trường dữ liệu quan trọng.
+4. Logic nghiệp vụ so sánh dữ liệu đã trích xuất và đưa ra kết quả cuối.
 
-## Yêu cầu trước
+Cách tiếp cận này giữ được khả năng thích nghi của agent với giao diện động, đồng thời vẫn dùng điều khiển tất định cho các phần cần độ chính xác cao.
 
-- Python 3.12+
-- Triển khai Azure OpenAI được cấu hình trong môi trường của bạn
-- Chrome hoặc Chromium được cài đặt cục bộ
-- Các phụ thuộc Playwright đã được cài đặt
-- Hiểu biết cơ bản về Python bất đồng bộ (async)
+## Khi nào dùng Agent và Actor
 
-## Cài đặt
+| Tình huống | Dùng agent | Dùng actor |
+| --- | --- | --- |
+| Layout động | Phù hợp vì agent có thể thích nghi | Dễ hỏng nếu selector thay đổi |
+| Cấu trúc đã biết | Chậm hơn cần thiết | Phù hợp vì nhanh và chính xác |
+| Tìm phần tử bằng ngữ nghĩa | Phù hợp với ngôn ngữ tự nhiên | Khó nếu không có selector rõ |
+| Kiểm soát thời gian | Kém dự đoán hơn | Kiểm soát wait và retry tốt hơn |
+| Workflow nhiều trạng thái bất ngờ | Phù hợp | Cần nhiều nhánh xử lý thủ công |
 
-Cài đặt các gói dùng trong notebook:
+## Thực hành thiết kế tốt
 
-```bash
-pip install browser_use playwright python-dotenv
-playwright install chromium
-```
-
-Cài đặt các biến môi trường Azure OpenAI được notebook sử dụng:
-
-```bash
-AZURE_OPENAI_ENDPOINT=...
-AZURE_OPENAI_API_KEY=...
-AZURE_OPENAI_CHAT_DEPLOYMENT_NAME=...
-# Tùy chọn: mặc định là phiên bản API mới nhất khi bỏ qua
-AZURE_OPENAI_API_VERSION=...
-```
-
-## Tổng quan Kiến trúc
-
-Notebook trình bày quy trình tự động trình duyệt kết hợp:
-
-1. Chrome khởi chạy với CDP được bật để cả Playwright và Browser-Use có thể chia sẻ cùng phiên trình duyệt.
-2. Một đại lý Browser-Use xử lý các tác vụ điều hướng mở như mở Airbnb, đóng các cửa sổ bật lên, và tìm kiếm Stockholm.
-3. Trang đang hoạt động được kiểm tra với sơ đồ Pydantic có cấu trúc để trích xuất tiêu đề danh sách, giá theo đêm, đánh giá và URL.
-4. Logic Python so sánh các danh sách trích xuất và tô đậm kết quả rẻ nhất.
-
-Cách tiếp cận này giữ được khả năng suy luận dựa trên thị giác linh hoạt mà Browser-Use mạnh, đồng thời cung cấp cho bạn quyền kiểm soát trình duyệt xác định khi cần.
-
-## Những điểm chính và Thực hành tốt nhất
-
-### Khi Nào Dùng Đại lý và Khi Nào Dùng Tác nhân
-
-| Tình huống | Dùng Đại lý | Dùng Tác nhân |
-|------------|-------------|---------------|
-| Bố cục động | Có, AI thích nghi với thay đổi trang | Không, bộ chọn dễ bị lỗi |
-| Cấu trúc đã biết | Không, đại lý chậm hơn điều khiển trực tiếp | Có, nhanh và chính xác |
-| Tìm phần tử | Có, ngôn ngữ tự nhiên hiệu quả | Không, cần bộ chọn chính xác |
-| Kiểm soát thời gian | Không, kém dự đoán | Có, kiểm soát hoàn toàn chờ và thử lại |
-| Quy trình phức tạp | Có, xử lý trạng thái UI bất ngờ | Không, cần nhánh rõ ràng |
-
-### Thực hành tốt nhất với Browser-Use
-
-1. Bắt đầu với đại lý cho khám phá và điều hướng động.
-2. Chuyển sang điều khiển trang trực tiếp khi tương tác trở nên dự đoán được.
-3. Sử dụng mô hình đầu ra có cấu trúc để dữ liệu trích xuất được xác thực và an toàn kiểu.
-4. Thêm độ trễ chiến lược sau các hành động kích hoạt thay đổi UI hiển thị.
-5. Chụp ảnh màn hình khi lặp lại để dễ gỡ lỗi khi thất bại.
-6. Mong đợi các trang web thay đổi và thiết kế các chiến lược dự phòng cho hộp bật lên và chuyển đổi bố cục.
-7. Kết hợp mẫu đại lý và tác nhân để có cả tính linh hoạt và chính xác.
-
-### Ứng dụng Thực tế
-
-- Đặt và theo dõi giá du lịch
-- So sánh giá và kiểm tra tồn kho thương mại điện tử
-- Trích xuất có cấu trúc từ các trang web động
-- Kiểm thử UI nhận biết thị giác và xác minh
-- Giám sát trang web và cảnh báo
-- Tự động điền biểu mẫu thông minh qua các luồng đa bước
-
-## Tài nguyên bổ sung
-
-- [Mẫu tích hợp Browser-Use Playwright](https://docs.browser-use.com/examples/templates/playwright-integration)
-- [Tham số tác nhân và trích xuất nội dung của Browser-Use](https://docs.browser-use.com/customize/actor/all-parameters)
-- [Thiết lập Khóa học](../00-course-setup/README.md)
-
----
-
-<!-- CO-OP TRANSLATOR DISCLAIMER START -->
-**Tuyên bố từ chối trách nhiệm**:  
-Tài liệu này đã được dịch bằng dịch vụ dịch thuật AI [Co-op Translator](https://github.com/Azure/co-op-translator). Mặc dù chúng tôi nỗ lực để đảm bảo độ chính xác, xin lưu ý rằng các bản dịch tự động có thể chứa lỗi hoặc sai sót. Tài liệu gốc bằng ngôn ngữ gốc nên được coi là nguồn chính xác nhất. Đối với thông tin quan trọng, chúng tôi khuyến nghị sử dụng dịch vụ dịch thuật chuyên nghiệp bởi con người. Chúng tôi không chịu trách nhiệm về bất kỳ sự hiểu lầm hoặc giải thích sai nào phát sinh từ việc sử dụng bản dịch này.
-<!-- CO-OP TRANSLATOR DISCLAIMER END -->
+1. Bắt đầu bằng agent khi cần khám phá UI hoặc xử lý giao diện động.
+2. Chuyển sang actor khi thao tác đã có cấu trúc rõ ràng.
+3. Dùng schema có cấu trúc để dữ liệu trích xuất có thể kiểm chứng.
+4. Thiết kế fallback cho popup, thay đổi layout và trạng thái tải chậm.
+5. Tách rõ phần quan sát, phần hành động và phần ra quyết định.

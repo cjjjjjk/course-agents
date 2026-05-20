@@ -412,6 +412,9 @@ FodyWeavers.xsd
 # Ignore backup files
 *-backup.ipynb
 
+# Static site build output
+_site/
+
 # Ignore Cognee system and data storage
 13-agent-memory/.cognee_system
 13-agent-memory/.data_storage

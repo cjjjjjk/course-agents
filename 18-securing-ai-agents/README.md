@@ -1,4 +1,4 @@
-[Watch the lesson video: Securing AI Agents with Cryptographic Receipts](https://youtu.be/PLACEHOLDER_VIDEO_ID)
+﻿[Watch the lesson video: Securing AI Agents with Cryptographic Receipts](https://youtu.be/PLACEHOLDER_VIDEO_ID)
 
 > _(Lesson video and thumbnail to be added by the Microsoft content team post-merge, matching the lesson 14 / 15 pattern.)_
 
@@ -100,7 +100,6 @@ Together these properties provide three guarantees:
 
 You do not need a special library to produce a receipt. The cryptographic primitives are widely available and the logic is a few dozen lines of Python.
 
-The hands-on exercises in `code_samples/18-signed-receipts.ipynb` walk through the full flow. The summary version:
 
 ```python
 import json
@@ -152,7 +151,6 @@ receipt = {
 }
 ```
 
-That is the entire signing pipeline. The exercises in the notebook walk through each step.
 
 ## Verifying a Receipt and Detecting Tampering
 
@@ -191,7 +189,7 @@ def verify_receipt(receipt: dict) -> bool:
 
 This function takes a receipt and returns `True` if the signature is valid, `False` otherwise. No network call, no service dependency, no trust required in any third party.
 
-To see tampering detection in action, the notebook walks through:
+To see tampering detection in action, the flow covers:
 
 1. Producing a valid receipt and confirming it verifies.
 2. Modifying one byte of the `tool_args_hash` field.
@@ -220,7 +218,6 @@ Each receipt records the hash of the receipt before it. To remove receipt 2 sile
 
 If the private key is in a hardware key vault and you publish the public key with each receipt, neither attack is feasible without detection.
 
-The notebook walks through:
 
 1. Building a chain of three receipts.
 2. Verifying that each receipt's `previous_receipt_hash` matches the actual hash of the prior receipt.
@@ -311,7 +308,6 @@ No. A valid receipt proves three things: attribution (this key signed this conte
 
 ## Practice Exercise
 
-Open `code_samples/18-signed-receipts.ipynb` and complete all four sections:
 
 1. **Section 1**: Sign your first receipt and verify it.
 2. **Section 2**: Tamper with the receipt and observe verification fail.

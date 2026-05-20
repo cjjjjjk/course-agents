@@ -1,4 +1,4 @@
-[![Intro to AI Agents](./images/lesson-1-thumbnail.png)](https://youtu.be/3zgm60bXmQk?si=QA4CW2-cmul5kk3D)
+﻿[![Intro to AI Agents](./images/lesson-1-thumbnail.png)](https://youtu.be/3zgm60bXmQk?si=QA4CW2-cmul5kk3D)
 
 > _(Click the image above to watch the video for this lesson)_
 
@@ -114,15 +114,6 @@ Agentic Frameworks give developers ready-made templates, tools, and infrastructu
 - Collaborate across multiple agents
 
 In this course, we focus on the **Microsoft Agent Framework (MAF)** for building production-ready agents.
-
----
-
-## Code Samples
-
-Ready to see it in action? Here are the code samples for this lesson:
-
-- 🐍 Python: [Agent Framework](./code_samples/01-python-agent-framework.ipynb)
-- 🔷 .NET: [Agent Framework](./code_samples/01-dotnet-agent-framework.md)
 
 ---
 
