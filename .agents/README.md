@@ -1,4 +1,3 @@
-# AGENTS.md
 
 ## Project Overview
 
@@ -61,29 +60,6 @@ Deployment is handled by `.github/workflows/deploy-pages.yml`.
 
 The workflow runs on pushes to `main` and through manual `workflow_dispatch`. It builds `_site/`, uploads the Pages artifact, and deploys with the official GitHub Pages actions.
 
-## Commit Policy
-
-Agents may proactively stage and commit a completed, verified change unless the user asks not to commit.
-
-Use this commit message format:
-
-```text
-prefix (part - optional): message
-
-- description 1
-- description 2
-
-Co-authored-by: Name <email>
-```
-
-Recommended prefixes:
-
-- `docs`
-- `site`
-- `content`
-- `workflow`
-- `chore`
-- `fix`
 
 ## Verification
 
