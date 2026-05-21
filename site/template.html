@@ -8,24 +8,18 @@
     <link rel="stylesheet" href="{{ asset_prefix }}assets/styles.css">
   </head>
   <body>
-    <header class="topbar">
-      <a class="brand" href="{{ home_href }}">AI Agents Course</a>
-      <nav class="topnav" aria-label="Primary navigation">
-        <a href="{{ home_href }}">{{ home_label }}</a>
-        <a href="{{ guide_href }}">{{ guide_label }}</a>
-        <a href="{{ repo_href }}">GitHub</a>
-      </nav>
-      <div class="actions">
-        <a class="lang-link" href="{{ lang_switch_href }}">{{ lang_switch_label }}</a>
-        <button class="icon-button" type="button" data-toggle-nav aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-    </header>
     <div class="shell">
       <aside class="sidebar" data-sidebar>
+        <div class="side-head">
+          <a class="brand" href="{{ home_href }}">AI Agents Course</a>
+          <div class="side-meta">{{ lang_label }}</div>
+          <nav class="side-links" aria-label="Primary navigation">
+            <a href="{{ home_href }}">{{ home_label }}</a>
+            <a href="{{ guide_href }}">{{ guide_label }}</a>
+            <a href="{{ repo_href }}">GitHub</a>
+          </nav>
+          <a class="lang-link" href="{{ lang_switch_href }}">{{ lang_switch_label }}</a>
+        </div>
         <label class="search">
           <span>{{ search_label }}</span>
           <input type="search" data-search placeholder="{{ search_placeholder }}">

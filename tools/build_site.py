@@ -35,6 +35,47 @@ LANGS = {
     },
 }
 
+LESSON_TITLES = {
+    "en": {
+        "00-course-setup": "Course Orientation",
+        "01-intro-to-ai-agents": "Introduction to AI Agents",
+        "02-explore-agentic-frameworks": "Explore AI Agent Frameworks",
+        "03-agentic-design-patterns": "AI Agentic Design Principles",
+        "04-tool-use": "Tool Use Design Pattern",
+        "05-agentic-rag": "Agentic RAG",
+        "06-building-trustworthy-agents": "Building Trustworthy AI Agents",
+        "07-planning-design": "Planning Design",
+        "08-multi-agent": "Multi-agent Design Patterns",
+        "09-metacognition": "Metacognition in AI Agents",
+        "10-ai-agents-production": "AI Agents in Production",
+        "11-agentic-protocols": "Agentic Protocols",
+        "12-context-engineering": "Context Engineering",
+        "13-agent-memory": "Memory for AI Agents",
+        "14-microsoft-agent-framework": "Microsoft Agent Framework",
+        "15-browser-use": "Computer Use Agents",
+        "18-securing-ai-agents": "Securing AI Agents",
+    },
+    "vi": {
+        "00-course-setup": "Định hướng khóa học",
+        "01-intro-to-ai-agents": "Giới thiệu về AI Agents",
+        "02-explore-agentic-frameworks": "Khám phá AI Agent Frameworks",
+        "03-agentic-design-patterns": "Nguyên tắc thiết kế Agentic",
+        "04-tool-use": "Mẫu thiết kế Tool Use",
+        "05-agentic-rag": "Agentic RAG",
+        "06-building-trustworthy-agents": "Xây dựng AI Agent đáng tin cậy",
+        "07-planning-design": "Thiết kế Planning",
+        "08-multi-agent": "Mẫu thiết kế Multi-agent",
+        "09-metacognition": "Metacognition trong AI Agents",
+        "10-ai-agents-production": "AI Agents trong Production",
+        "11-agentic-protocols": "Giao thức Agentic",
+        "12-context-engineering": "Context Engineering",
+        "13-agent-memory": "Bộ nhớ cho AI Agents",
+        "14-microsoft-agent-framework": "Microsoft Agent Framework",
+        "15-browser-use": "Computer Use Agents",
+        "18-securing-ai-agents": "Bảo mật AI Agents",
+    },
+}
+
 PUBLIC_ROOT_FILES = {"README.md", "STUDY_GUIDE.md", "SUPPORT.md"}
 RUNNABLE_EXTENSIONS = {".ipynb", ".py", ".cs", ".dll", ".exe", ".env"}
 ASSET_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg", ".ico"}
@@ -377,7 +418,7 @@ def nav_html(lang: str, current_out: Path) -> str:
         target = SOURCE_TO_OUTPUT.get((lang, src.resolve()))
         if not target:
             continue
-        title = first_heading(src.read_text(encoding="utf-8"), slug)
+        title = LESSON_TITLES.get(lang, {}).get(slug) or first_heading(src.read_text(encoding="utf-8"), slug)
         current = ' aria-current="page"' if target == current_out else ""
         href = relative_href(current_out, target)
         links.append(f'<a class="lesson-link" href="{html.escape(href)}"{current}>{html.escape(title)}</a>')
@@ -405,6 +446,7 @@ def render_page(lang: str, src: Path, out: Path) -> None:
         "asset_prefix": asset_prefix,
         "home_href": html.escape(relative_href(out, home_target)),
         "home_label": html.escape(LANGS[lang]["home"]),
+        "lang_label": html.escape(LANGS[lang]["label"]),
         "guide_href": html.escape(relative_href(out, guide_target)),
         "guide_label": html.escape(LANGS[lang]["guide"]),
         "repo_href": "https://github.com/microsoft/ai-agents-for-beginners",
