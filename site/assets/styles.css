@@ -58,22 +58,25 @@ a:hover {
 
 .side-head {
   display: grid;
-  gap: 14px;
-  padding-bottom: 18px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid var(--border);
+  gap: 12px;
+  padding-top: 18px;
+  margin-top: 18px;
+  border-top: 1px solid var(--border);
 }
 
 .brand {
   color: var(--text);
-  font-size: 18px;
+  font-size: 13px;
   font-weight: 750;
+  letter-spacing: 0;
   line-height: 1.25;
 }
 
-.side-meta {
-  color: var(--muted);
-  font-size: 13px;
+.brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .side-links {
@@ -102,7 +105,8 @@ a:hover {
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 700;
 }
 
 .search {

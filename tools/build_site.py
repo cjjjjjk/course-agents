@@ -17,7 +17,7 @@ LANGS = {
     "en": {
         "root": ROOT,
         "label": "English",
-        "switch": "Tiếng Việt",
+        "switch": "VI",
         "home": "Home",
         "guide": "Study guide",
         "search": "Search lessons",
@@ -27,7 +27,7 @@ LANGS = {
     "vi": {
         "root": ROOT / "translations" / "vi",
         "label": "Tiếng Việt",
-        "switch": "English",
+        "switch": "EN",
         "home": "Trang chủ",
         "guide": "Hướng dẫn học",
         "search": "Tìm bài học",
