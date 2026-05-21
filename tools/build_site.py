@@ -108,6 +108,7 @@ def collect_sources() -> None:
 
 def first_heading(markdown: str, fallback: str) -> str:
     for line in markdown.splitlines():
+        line = line.lstrip("\ufeff")
         match = re.match(r"^#\s+(.+?)\s*$", line)
         if match:
             return strip_markdown(match.group(1))
@@ -260,7 +261,7 @@ def parse_table(lines: list[str], index: int, lang: str, src: Path, out: Path) -
 
 
 def markdown_to_html(markdown: str, lang: str, src: Path, out: Path) -> str:
-    lines = markdown.splitlines()
+    lines = markdown.lstrip("\ufeff").splitlines()
     blocks: list[str] = []
     index = 0
 
