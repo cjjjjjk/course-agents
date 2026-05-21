@@ -3,6 +3,7 @@ from __future__ import annotations
 import html
 import re
 import shutil
+import hashlib
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -93,6 +94,15 @@ EXCLUDED_DIRS = {
 
 SOURCE_TO_OUTPUT: dict[tuple[str, Path], Path] = {}
 LESSON_SLUGS: list[str] = []
+
+
+def asset_version() -> str:
+    digest = hashlib.sha256()
+    for asset in (SITE_DIR / "assets").glob("*"):
+        if asset.is_file():
+            digest.update(asset.name.encode("utf-8"))
+            digest.update(asset.read_bytes())
+    return digest.hexdigest()[:12]
 
 
 def is_external(href: str) -> bool:
@@ -429,6 +439,7 @@ def render_page(lang: str, src: Path, out: Path) -> None:
     markdown = src.read_text(encoding="utf-8")
     title = first_heading(markdown, "AI Agents Course")
     content = markdown_to_html(markdown, lang, src, out)
+    version = asset_version()
     asset_prefix = Path(shutil.os.path.relpath(OUT_DIR, out.parent)).as_posix()
     if asset_prefix == ".":
         asset_prefix = ""
@@ -444,6 +455,7 @@ def render_page(lang: str, src: Path, out: Path) -> None:
         "title": html.escape(title),
         "description": html.escape(LANGS[lang]["description"]),
         "asset_prefix": asset_prefix,
+        "asset_version": version,
         "home_href": html.escape(relative_href(out, home_target)),
         "home_label": html.escape(LANGS[lang]["home"]),
         "lang_label": html.escape(LANGS[lang]["label"]),
