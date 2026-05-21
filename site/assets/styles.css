@@ -48,10 +48,12 @@ a:hover {
 .sidebar {
   position: sticky;
   top: 0;
+  display: flex;
+  flex-direction: column;
   align-self: start;
   height: 100vh;
   padding: 22px 18px;
-  overflow: auto;
+  overflow: hidden;
   background: var(--surface);
   border-right: 1px solid var(--border);
 }
@@ -60,7 +62,7 @@ a:hover {
   display: grid;
   gap: 12px;
   padding-top: 18px;
-  margin-top: 18px;
+  margin-top: auto;
   border-top: 1px solid var(--border);
 }
 
@@ -130,6 +132,9 @@ a:hover {
 .lesson-nav {
   display: grid;
   gap: 5px;
+  min-height: 0;
+  overflow: auto;
+  padding-bottom: 18px;
 }
 
 .lesson-link {
@@ -267,10 +272,20 @@ a:hover {
 
   .sidebar {
     position: static;
+    display: block;
     height: auto;
     max-height: none;
+    overflow: visible;
     border-right: 0;
     border-bottom: 1px solid var(--border);
+  }
+
+  .side-head {
+    margin-top: 18px;
+  }
+
+  .lesson-nav {
+    overflow: visible;
   }
 
   .content {
